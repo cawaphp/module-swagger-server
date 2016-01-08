@@ -1,0 +1,16 @@
+{
+    "name": "cawa-module-swagger-server",
+    "description": "",
+    "authors": [
+      "tchiotludo"
+    ],
+    "main": "assets",
+    "moduleType": [],
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "bootstrap-sass": "~3.3.*",
+        "highlightjs": "~9.1.0",
+        "flat-admin-bootstrap-templates": "git@github.com:tui2tone/flat-admin-bootstrap-templates.git"
+    }
+}

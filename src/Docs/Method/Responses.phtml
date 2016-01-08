@@ -1,0 +1,65 @@
+<?php
+/**
+ * @var $this \Cawa\App\Controller\Renderer\ViewController
+ * @var $responses array
+ */
+?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="title"><?= $this->trans("swaggerserver.responses") ?></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th><?= $this->trans("swaggerserver.statusCode") ?></th>
+                            <th><?= $this->trans("swaggerserver.type") ?></th>
+                            <th><?= $this->trans("swaggerserver.description") ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($responses as $statusCode => $response) : ?>
+                        <tr>
+                            <td>
+                                <span class="badge <?= $statusCode < 300 ? "success" : ($statusCode >= 600 ? "warning" : "danger") ?>"><?=
+                                    $statusCode ?></span>
+                            </td>
+                            <td>
+                                <?php if(isset($response["type"])): ?>
+                                <?php foreach($response["type"] as $type): ?>
+                                <?php if ($this->trans("swaggerserver.type." . $type)): ?>
+                                <?= $this->trans("swaggerserver.type." . $type) ?>
+                                <?php else: ?>
+                                <a href="#<?= $type ?>"><?= $type ?></a>
+                                <?php endif; ?>
+                                <?php endforeach; ?>
+                                <?php else: ?>
+                                <?= $this->trans("swaggerserver.type.void") ?>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= $response["comment"] ?? "" ?></td>
+                        </tr>
+                        <?php if (isset($response["headers"])) : ?>
+                        <?php foreach($response["headers"] as $header) : ?>
+                        <tr>
+                            <td>
+                                <code>X-<?= ucfirst($header["name"]) ?></code>
+                            </td>
+                            <td>
+                                Header <?= $this->trans("swaggerserver.type." . $header["type"]) ? $this->trans("swaggerserver.type." . $header["type"]) : $header["type"] ?>
+                            </td>
+                            <td><?= $header["comment"] ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

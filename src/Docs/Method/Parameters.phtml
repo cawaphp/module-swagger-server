@@ -1,0 +1,78 @@
+<?php
+/**
+ * @var $this \Cawa\App\Controller\Renderer\ViewController
+ * @var $uri string
+ * @var $method string
+ * @var $parameters array
+ */
+?>
+<form method="<?= $method ?>" action="<?= $uri ?>">
+    <pre class="dark"><span class="btn btn-xs btn-info"><?= $method ?></span> <?=  $uri ?></pre>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title">
+                            <?= $this->trans("swaggerserver.parameters") ?>
+                        </div>
+                    </div>
+                    <span class="pull-right">
+                        <input type="submit" class="btn btn-primary" value="Try" />
+                    </span>
+
+                </div>
+                <div class="card-body">
+                    <?php if (isset($parameters)) : ?>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th><?= $this->trans("swaggerserver.name") ?></th>
+                                <th><?= $this->trans("swaggerserver.type") ?></th>
+                                <th><?= $this->trans("swaggerserver.description") ?></th>
+                                <th></th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($parameters as $parameter) : ?>
+                            <tr>
+                                <td>
+                                    <code>
+                                        <?= $parameter["name"] ?>
+                                        <?= isset($parameter["default"]) ? " = " . $parameter["default"] : "" ?>
+                                    </code>
+                                </td>
+                                <td>
+                                    <?= $this->trans("swaggerserver.type." . $parameter["type"]) ?>
+                                    <?php if ($parameter["validation"]): ?>
+                                        <ul>
+                                          <?php foreach($parameter['validation'] as $validation): ?>
+                                          <li><?= $this->trans("swaggerserver.validation." . $validation[0], [is_array($validation[1]) ? implode(", ", $validation[1]) : $validation[1]]) ?></li>
+                                          <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= $parameter["comment"] ?></td>
+                                <td>
+                                    <input
+                                        type="<?= $parameter["inputType"] ?>"
+                                        <?= $parameter["type"] == "float" ? 'step="any"': '' ?>
+                                        class="form-control"
+                                        placeholder="<?= $parameter["name"] ?>"
+                                        name="<?= $parameter["name"]?>"
+                                        value="<?= $parameter["default"] ?? "" ?>"
+                                        <?= $parameter["inputType"] == "checkbox" && $parameter["default"] ? 'checked="checked"' : "" ?>
+                                        <?= $parameter["required"] ? 'required' : "" ?>
+                                    />
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <?php else: ?>
+                        <?= $this->trans("swaggerserver.parameters.noparameter") ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

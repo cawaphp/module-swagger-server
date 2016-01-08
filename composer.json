@@ -1,0 +1,22 @@
+{
+    "name": "cawaphp/module-swagger-server",
+    "description": "Module for Cawa Framework that handle swagger request from php annotation on php class",
+    "keywords": ["cawa", "swagger", "api", "json", "rest", "swagger-ui"],
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "tchiotludo"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cawa\\SwaggerServer\\": "src"
+        }
+    },
+    "require": {
+        "php": "~7.0",
+        "cawaphp/cawa" : "dev-master"
+    }
+}

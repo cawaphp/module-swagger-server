@@ -1,0 +1,54 @@
+<?php
+/**
+ * @var $this \Cawa\App\Controller\ViewController
+ * @var $models array
+ */
+if (isset($models)) :
+?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="title"><?= $this->trans("swaggerserver.models") ?></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <?php foreach($models as $modelName => $model) : ?>
+                <a name="<?= $modelName ?>"></a>
+                <h4><?= $modelName ?></h4>
+                <table class="table table-bordered table-hover table-striped table-condensed table-padding">
+                    <thead>
+                        <tr>
+                            <th><?= $this->trans("swaggerserver.name") ?></th>
+                            <th><?= $this->trans("swaggerserver.type") ?></th>
+                            <th><?= $this->trans("swaggerserver.description") ?></th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($model["properties"] as $name => $property) : ?>
+                        <tr>
+                            <td>
+                              <code>
+                                  <?= $name ?>
+                              </code>
+                            </td>
+                            <td>
+                                <?php foreach($property["types"] as $type) : ?>
+                                <?php if ($this->trans("swaggerserver.type." . $type)): ?>
+                                <?= $this->trans("swaggerserver.type." . $type) ?><br />
+                                <?php else: ?>
+                                <a href="#<?= $type ?>"><?= $type ?></a><br />
+                                <?php endif ?>
+                                <?php endforeach; ?>
+                            </td>
+                            <td><?= $property["comment"] ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,111 @@
+<?php
+/**
+ * @var $this \Cawa\App\Controller\Renderer\HtmlPage
+ * @var $apiName string
+ * @var $namespace string
+ * @var $namespaces array
+ * @var $service string
+ * @var $version $int
+ * @var $method string
+ * @var $breadcrumb array
+ * @var $subtitle string
+ * @var $main string
+ * @var $titleBadge string
+ * @var $versions array
+ * @var $maxVersion int
+ */
+?>
+<div class="app-container expanded">
+    <div class="row content-container">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <?php foreach($breadcrumb as $current): ?>
+                        <li><?= $current ?></li>
+                        <?php endforeach; ?>
+                    </ol>
+                </div>
+                <div class="pull-right">
+                    <?php if (isset($versions)) : ?>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">v<?= $version ?? $maxVersion ?> <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <?php foreach($versions as $currentVersion => $url): ?>
+                            <?php if ($currentVersion != ($version ?? $maxVersion)) : ?>
+                            <li><a href="<?= $url ?>">v<?= $currentVersion ?></a></li>
+                            <?php endif; ?>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+                    <?= $titleBadge ?>
+                </div>
+            </div>
+        </nav>
+        <div class="side-menu sidebar-inverse">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="side-menu-container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <div class="icon fa fa-paper-plane"></div>
+                            <div class="title"><?= $apiName ?></div>
+                        </a>
+                        <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li<?= is_null($namespace) ? ' class="active"' : ''?>>
+                            <a href="<?= $this->route("swagger.docHome") ?>">
+                                <span class="icon fa fa-tachometer"></span><span class="title"><?= "Home" ?></span>
+                            </a>
+                        </li>
+                        <?php foreach($namespaces as $currentNamespace): ?>
+                        <li class="panel panel-default dropdown<?= $currentNamespace["active"] ? ' active' : ''?>">
+                            <a data-toggle="collapse" href="<?= $currentNamespace["link"] ?>">
+                                <span class="title"><?= $currentNamespace["name"] ?></span>
+                            </a>
+                            <div id="dropdown-<?= $currentNamespace["name"] ?>" class="panel-collapse<?= $namespace != $currentNamespace["name"] ? '
+                            collapse' : '' ?>">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <?php foreach($currentNamespace["services"] as $currentService): ?>
+                                        <li>
+                                            <a <?= $currentService["active"] ? ' class="active"' : ''?> href="<?= $currentService["link"] ?>"><?= $currentService["name"] ?></a>
+                                            <?php foreach($currentService["methods"] as $currentMethod): ?>
+                                                <li>
+                                                    <a href="<?= $currentMethod["link"] ?>" class="method<?=  $currentMethod["active"] ? " active" : "" ?>"><?= $currentMethod["name"] ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title"><?= end($breadcrumb) ?></span>
+                    <?php if (isset($subtitle)): ?>
+                    <div class="description"><?= $subtitle ?></div>
+                    <?php endif; ?>
+                </div>
+                <?php if (isset($versions) && $version && $version < $maxVersion) : ?>
+                <div class="alert alert-warning" role="alert"><?= $this->trans("swaggerserver.outdatedPage") ?></div>
+                <?php endif;?>
+
+                <?= $main ?>
+            </div>
+        </div>
+    </div>
+<div>

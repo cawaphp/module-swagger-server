@@ -1,0 +1,20 @@
+{
+    "name": "module-swagger-server",
+    "version": "0.0.1",
+    "description": "Сáша frameworks - Swagger Server Module",
+    "dependencies": {
+        "gulp": "^3.9.0",
+        "gulp-concat": "^2.6.0",
+        "gulp-sourcemaps": "^1.6.0",
+        "gulp-rename": "^1.2.2",
+        "gulp-replace": "^0.5.4",
+        "gulp-size": "^2.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cawaphp/module-swagger-server.git"
+    },
+    "main": "./gulptask.js",
+    "author": "tchiotludo",
+    "license": "GPL-3.0"
+}
