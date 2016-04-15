@@ -15,7 +15,7 @@ namespace Cawa\SwaggerServer\Reflection;
 
 class ReflectionMethod extends \ReflectionMethod
 {
-    use PhpDocParser;
+    use PhpDocParserTrait;
 
     /**
      * @param mixed $class

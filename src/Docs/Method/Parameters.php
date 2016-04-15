@@ -14,17 +14,17 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer\Docs\Method;
 
 use Cawa\Intl\TranslatorFactory;
-use Cawa\Renderer\Phtml;
+use Cawa\Renderer\PhtmlTrait;
 use Cawa\Controller\ViewController;
-use Cawa\Controller\ViewData;
+use Cawa\Controller\ViewDataTrait;
 use Cawa\SwaggerServer\AbstractService;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Param;
 
 class Parameters extends ViewController
 {
-    use Phtml;
-    use ViewData;
+    use PhtmlTrait;
+    use ViewDataTrait;
     use TranslatorFactory;
 
     public function __construct(AbstractService $service, string $method)

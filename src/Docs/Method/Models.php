@@ -14,20 +14,20 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer\Docs\Method;
 
 use Cawa\Intl\TranslatorFactory;
-use Cawa\Renderer\Phtml;
+use Cawa\Renderer\PhtmlTrait;
 use Cawa\Controller\ViewController;
-use Cawa\Controller\ViewData;
+use Cawa\Controller\ViewDataTrait;
 use Cawa\SwaggerServer\AbstractService;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Response;
-use Cawa\SwaggerServer\Tools;
+use Cawa\SwaggerServer\ToolsTrait;
 
 class Models extends ViewController
 {
-    use Tools;
+    use ToolsTrait;
     use TranslatorFactory;
-    use ViewData;
-    use Phtml;
+    use ViewDataTrait;
+    use PhtmlTrait;
 
     /**
      * Models constructor.

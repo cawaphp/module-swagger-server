@@ -21,7 +21,7 @@ use Cawa\SwaggerServer\Reflection\Definitions\HttpMethod;
 use Cawa\SwaggerServer\Reflection\Model;
 use Cawa\SwaggerServer\Renderer\AbstractRenderer;
 
-trait Tools
+trait ToolsTrait
 {
     /**
      * @var \Cawa\SwaggerServer\Module

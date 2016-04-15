@@ -19,8 +19,8 @@ use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
 class ApiController extends AbstractController
 {
-    use Tools;
-    use SwaggerGenerator;
+    use ToolsTrait;
+    use SwaggerGeneratorTrait;
 
     /**
      * @return void

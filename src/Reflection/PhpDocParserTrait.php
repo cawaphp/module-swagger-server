@@ -25,7 +25,7 @@ use Cawa\SwaggerServer\Reflection\Definitions\Response;
 use Cawa\SwaggerServer\Reflection\Definitions\ReturnType;
 use Cawa\SwaggerServer\Reflection\Definitions\Throws;
 
-trait PhpDocParser
+trait PhpDocParserTrait
 {
     /**
      * @var Definition[]

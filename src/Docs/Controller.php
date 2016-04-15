@@ -17,12 +17,12 @@ use Cawa\Controller\AbstractController;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlElement;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
-use Cawa\SwaggerServer\Tools;
+use Cawa\SwaggerServer\ToolsTrait;
 
 class Controller extends AbstractController
 {
     use TranslatorFactory;
-    use Tools;
+    use ToolsTrait;
 
     /**
      * @var MasterPage

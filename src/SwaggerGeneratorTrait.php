@@ -23,7 +23,7 @@ use Cawa\SwaggerServer\Reflection\Definitions\Throws;
 /**
  * @mixin ApiController
  */
-trait SwaggerGenerator
+trait SwaggerGeneratorTrait
 {
     /**
      * @param string $namespace

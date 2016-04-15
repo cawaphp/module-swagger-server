@@ -17,18 +17,18 @@ use Cawa\App\HttpApp;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlPage;
-use Cawa\Renderer\Phtml;
+use Cawa\Renderer\PhtmlTrait;
 use Cawa\Controller\ViewController;
-use Cawa\Controller\ViewData;
-use Cawa\SwaggerServer\Tools;
+use Cawa\Controller\ViewDataTrait;
+use Cawa\SwaggerServer\ToolsTrait;
 
 class MasterPage extends HtmlPage
 {
-    use ViewData;
+    use ViewDataTrait;
     use TranslatorFactory;
-    use Tools;
-    use Phtml {
-        Phtml::render as private phtmlRender;
+    use ToolsTrait;
+    use PhtmlTrait {
+        PhtmlTrait::render as private phtmlRender;
     }
 
     /**
