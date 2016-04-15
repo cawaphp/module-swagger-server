@@ -54,13 +54,13 @@ abstract class AbstractException extends \Exception
 
         if ($this->getPrevious()) {
             if (isset($return['message'])) {
-                $sMessage = $return['message'];
+                $message = $return['message'];
             }
 
             $return = array_merge($return, $this->export($this->getPrevious()));
 
-            if (isset($sMessage) && $sMessage) {
-                $return['message'] = $sMessage;
+            if (isset($message) && $message) {
+                $return['message'] = $message;
             }
 
             if ($this->getPrevious()->getPrevious()) {
@@ -78,22 +78,22 @@ abstract class AbstractException extends \Exception
      */
     private function export(\Throwable $oException)
     {
-        $aReturn = [];
-        $aReturn['type'] = get_class($oException);
-        $aReturn['stack_trace'] = explode("\n", $oException->getTraceAsString());
-        $aReturn['code'] = $oException->getCode();
-        $aReturn['message'] = $oException->getMessage();
+        $return = [];
+        $return['type'] = get_class($oException);
+        $return['stack_trace'] = explode("\n", $oException->getTraceAsString());
+        $return['code'] = $oException->getCode();
+        $return['message'] = $oException->getMessage();
 
         foreach (get_object_vars($oException) as $sKey => $mValue) {
             if ($sKey != 'message' && $sKey != 'code') {
-                $aReturn['detail'][$sKey] = (string) $oException->$sKey;
+                $return['detail'][$sKey] = (string) $oException->$sKey;
             }
         }
 
-        if (isset($aReturn['detail'])) {
-            $aReturn['detail'] = json_encode($aReturn['detail']);
+        if (isset($return['detail'])) {
+            $return['detail'] = json_encode($return['detail']);
         }
 
-        return $aReturn;
+        return $return;
     }
 }

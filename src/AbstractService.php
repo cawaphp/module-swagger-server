@@ -321,12 +321,12 @@ abstract class AbstractService
         }
 
         if (strpos($type, '[]') !== false) {
-            $aReturn = [];
+            $return = [];
             foreach (is_array($value) ? $value : [$value] as $sKey => $currentValue) {
-                $aReturn[$sKey] = $this->getFinalValue(str_replace('[]', '', $type), $name, $currentValue, $optionnal);
+                $return[$sKey] = $this->getFinalValue(str_replace('[]', '', $type), $name, $currentValue, $optionnal);
             }
 
-            return $aReturn;
+            return $return;
         }
 
         switch ($type) {

@@ -123,7 +123,7 @@ class Param extends Comment implements Definition
         foreach ($this->validations as $validation) {
             $success = true;
             list($condition, $conditionValue) = $validation;
-            $sConditionValue = is_array($conditionValue) ? implode(';', $conditionValue) : $conditionValue;
+            $conditionValue = is_array($conditionValue) ? implode(';', $conditionValue) : $conditionValue;
 
             switch ($condition) {
                 case 'gte':
@@ -172,7 +172,7 @@ class Param extends Comment implements Definition
                     throw new \Exception(sprintf(
                         "Invalid condition parameters '%s: %s' for parameter '%s' with value '%s'",
                         $condition,
-                        $sConditionValue,
+                        $conditionValue,
                         $name,
                         $value
                     ));

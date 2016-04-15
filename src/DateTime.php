@@ -27,28 +27,28 @@ class DateTime extends \DateTime implements \JsonSerializable
     }
 
     /**
-     * @param string $mValue
+     * @param string $value
      *
      * @throws ResponseCode
      * @throws \Exception
      *
      * @return DateTime
      */
-    public static function createFromInput($mValue)
+    public static function createFromInput($value)
     {
-        $timestamp = strtotime($mValue);
+        $timestamp = strtotime($value);
 
         try {
             // trim java ms
-            $mValue = preg_replace('`(\\.[0-9]{3})\\+`', '+', $mValue);
+            $value = preg_replace('`(\\.[0-9]{3})\\+`', '+', $value);
 
-            $datetime = DateTime::createFromFormat(self::DATE_FORMAT, $mValue);
+            $datetime = DateTime::createFromFormat(self::DATE_FORMAT, $value);
 
             if ($timestamp != $datetime->getTimestamp()) {
-                throw new ResponseCode("Invalid datetime with value '$mValue'", 422);
+                throw new ResponseCode("Invalid datetime with value '$value'", 422);
             }
         } catch (\Exception $exception) {
-            throw new ResponseCode("Invalid datetime format with value '$mValue'", 422);
+            throw new ResponseCode("Invalid datetime format with value '$value'", 422);
         }
 
         return $datetime;

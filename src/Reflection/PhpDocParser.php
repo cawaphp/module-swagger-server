@@ -102,11 +102,11 @@ trait PhpDocParser
         }
 
         if ($split[0][0] != '@') {
-            $aComment = explode("\n", array_shift($split));
+            $comments = explode("\n", array_shift($split));
 
-            $this->add(new Comment(isset($aComment[0]) ? array_shift($aComment) : null), Definition::COMMENT);
+            $this->add(new Comment(isset($comments[0]) ? array_shift($comments) : null), Definition::COMMENT);
 
-            $commentLong = isset($aComment[0]) ? trim(implode($aComment, "\n"), "\n") : null;
+            $commentLong = isset($comments[0]) ? trim(implode($comments, "\n"), "\n") : null;
             if ($commentLong) {
                 $this->add(new CommentLong($commentLong), Definition::COMMENT_LONG);
             }
