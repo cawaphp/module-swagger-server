@@ -20,11 +20,13 @@ use Cawa\Renderer\HtmlPage;
 use Cawa\Renderer\PhtmlTrait;
 use Cawa\Controller\ViewController;
 use Cawa\Controller\ViewDataTrait;
+use Cawa\Router\RouterFactory;
 use Cawa\SwaggerServer\ToolsTrait;
 
 class MasterPage extends HtmlPage
 {
     use ViewDataTrait;
+    use RouterFactory;
     use TranslatorFactory;
     use ToolsTrait;
     use PhtmlTrait {
@@ -140,7 +142,7 @@ class MasterPage extends HtmlPage
 
             $servicesList = [];
             foreach ($this->listServices($namespaceName, $version) as $serviceName => $currentService) {
-                $link = $this->route('swagger.docService' . ($this->data['version'] ? 'Version' : ''), [
+                $link = $this->router()->getUri('swagger.docService' . ($this->data['version'] ? 'Version' : ''), [
                     'namespace' => $namespaceName,
                     'service' => $serviceName,
                     'version' => $version,
@@ -156,7 +158,7 @@ class MasterPage extends HtmlPage
 
                 if ($serviceName == $this->data['service']) {
                     foreach ($currentService->getMethods() as $methodName) {
-                        $link = $this->route('swagger.docMethod' . ($this->data['version'] ? 'Version' : ''), [
+                        $link = $this->router()->getUri('swagger.docMethod' . ($this->data['version'] ? 'Version' : ''), [
                             'namespace' => $namespaceName,
                             'service' => $serviceName,
                             'method' => $methodName,
@@ -176,7 +178,7 @@ class MasterPage extends HtmlPage
                 $servicesList[$serviceName] = $methodsList;
             }
 
-            $link = $this->route('swagger.docNamespace' . ($this->data['version'] ? 'Version' : ''), [
+            $link = $this->router()->getUri('swagger.docNamespace' . ($this->data['version'] ? 'Version' : ''), [
                 'namespace' => $namespaceName,
                 'version' => $version,
             ]);
@@ -192,8 +194,8 @@ class MasterPage extends HtmlPage
 
         if ($this->data['namespace']) {
             foreach ($this->module()->namespaces[$this->data['namespace']]->getVersions() as $version) {
-                $route = str_replace('VersionVersion', 'Version', HttpApp::router()->current() . 'Version');
-                $this->data['versions'][$version] = $this->route($route, [
+                $route = str_replace('VersionVersion', 'Version', self::router()->current() . 'Version');
+                $this->data['versions'][$version] = $this->router()->getUri($route, [
                     'namespace' => $this->data['namespace'],
                     'service' => $this->data['service'],
                     'method' => $this->data['method'],

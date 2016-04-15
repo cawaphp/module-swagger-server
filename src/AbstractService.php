@@ -15,6 +15,7 @@ namespace Cawa\SwaggerServer;
 
 use Cawa\App\HttpApp;
 use Cawa\Net\Uri;
+use Cawa\Router\RouterFactory;
 use Cawa\SwaggerServer\Auth\AbstractAuth;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
@@ -24,6 +25,8 @@ use Cawa\SwaggerServer\Renderer\AbstractRenderer;
 
 abstract class AbstractService
 {
+    use RouterFactory;
+
     /**
      * @var string
      */
@@ -445,7 +448,7 @@ abstract class AbstractService
      */
     public function getUri(string $method) : string
     {
-        $serviceUri = HttpApp::router()->getUri('swagger.request', [
+        $serviceUri = $this->router()->getUri('swagger.request', [
             'renderer' => 'Json',
             'version' => $this->getVersion(),
             'namespace' => $this->getNamespace(),

@@ -60,7 +60,7 @@
                     </div>
                     <ul class="nav navbar-nav">
                         <li<?= is_null($namespace) ? ' class="active"' : ''?>>
-                            <a href="<?= $this->route("swagger.docHome") ?>">
+                            <a href="<?= $this->router()->getUri("swagger.docHome") ?>">
                                 <span class="icon fa fa-tachometer"></span><span class="title"><?= "Home" ?></span>
                             </a>
                         </li>

@@ -16,6 +16,7 @@ namespace Cawa\SwaggerServer\Docs;
 use Cawa\Controller\AbstractController;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlElement;
+use Cawa\Router\RouterFactory;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\ToolsTrait;
 
@@ -23,6 +24,7 @@ class Controller extends AbstractController
 {
     use TranslatorFactory;
     use ToolsTrait;
+    use RouterFactory;
 
     /**
      * @var MasterPage
@@ -47,7 +49,7 @@ class Controller extends AbstractController
         if ($namespace) {
             $route = $method ? 'Method' : ($service ? 'Service' : 'Namespace');
             $swagger = new HtmlElement('<a>', '{···}');
-            $swagger->addAttribute('href', $this->route('swagger.swagger' . $route, [
+            $swagger->addAttribute('href', $this->router()->getUri('swagger.swagger' . $route, [
                 'namespace' => $namespace,
                 'version' => $version ? $version : $this->maxVersion($namespace),
                 'service' => $service,
