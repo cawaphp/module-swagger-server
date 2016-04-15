@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs\Method;
 
-use Cawa\App\Controller\Renderer\Phtml;
-use Cawa\App\Controller\ViewController;
-use Cawa\App\Controller\ViewData;
+use Cawa\Renderer\Phtml;
+use Cawa\Controller\ViewController;
+use Cawa\Controller\ViewData;
 use Cawa\SwaggerServer\AbstractService;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Header;

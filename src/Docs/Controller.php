@@ -13,8 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs;
 
-use Cawa\App\Controller\AbstractController;
-use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\Controller\AbstractController;
+use Cawa\Renderer\HtmlElement;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Tools;
 

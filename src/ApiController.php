@@ -14,7 +14,7 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer;
 
 use Cawa\App\App;
-use Cawa\App\Controller\AbstractController;
+use Cawa\Controller\AbstractController;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
 class ApiController extends AbstractController

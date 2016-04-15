@@ -14,11 +14,11 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer\Docs;
 
 use Cawa\App\App;
-use Cawa\App\Controller\Renderer\Container;
-use Cawa\App\Controller\Renderer\HtmlPage;
-use Cawa\App\Controller\Renderer\Phtml;
-use Cawa\App\Controller\ViewController;
-use Cawa\App\Controller\ViewData;
+use Cawa\Renderer\Container;
+use Cawa\Renderer\HtmlPage;
+use Cawa\Renderer\Phtml;
+use Cawa\Controller\ViewController;
+use Cawa\Controller\ViewData;
 use Cawa\SwaggerServer\Tools;
 
 class MasterPage extends HtmlPage
