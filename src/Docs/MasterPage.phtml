@@ -101,7 +101,7 @@
                     <?php endif; ?>
                 </div>
                 <?php if (isset($versions) && $version && $version < $maxVersion) : ?>
-                <div class="alert alert-warning" role="alert"><?= $this->trans("swaggerserver.outdatedPage") ?></div>
+                <div class="alert alert-warning" role="alert"><?= $this->translator()->trans("swaggerserver.outdatedPage") ?></div>
                 <?php endif;?>
 
                 <?= $main ?>

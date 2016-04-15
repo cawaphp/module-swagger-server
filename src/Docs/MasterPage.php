@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer\Docs;
 
 use Cawa\App\App;
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlPage;
 use Cawa\Renderer\Phtml;
@@ -24,6 +25,7 @@ use Cawa\SwaggerServer\Tools;
 class MasterPage extends HtmlPage
 {
     use ViewData;
+    use TranslatorFactory;
     use Tools;
     use Phtml {
         Phtml::render as private phtmlRender;

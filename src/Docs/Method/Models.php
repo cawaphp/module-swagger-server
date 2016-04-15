@@ -13,6 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs\Method;
 
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Phtml;
 use Cawa\Controller\ViewController;
 use Cawa\Controller\ViewData;
@@ -24,6 +25,7 @@ use Cawa\SwaggerServer\Tools;
 class Models extends ViewController
 {
     use Tools;
+    use TranslatorFactory;
     use ViewData;
     use Phtml;
 

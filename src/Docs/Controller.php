@@ -14,12 +14,14 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer\Docs;
 
 use Cawa\Controller\AbstractController;
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlElement;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Tools;
 
 class Controller extends AbstractController
 {
+    use TranslatorFactory;
     use Tools;
 
     /**
@@ -35,7 +37,7 @@ class Controller extends AbstractController
      */
     public function init(string $namespace = null, string $service = null, string $method = null, int $version = null)
     {
-        $this->addLocaleFile('../lang/global', 'swaggerserver');
+        $this->translator()->addFile(__DIR__ . '/../lang/global', 'swaggerserver');
 
         $this->masterpage = new MasterPage($namespace, $service, $method, $version);
         if (!is_numeric($version) && $version) {
@@ -81,7 +83,7 @@ class Controller extends AbstractController
         $serviceObject = $this->listServices($namespace, $version, $service)[0];
 
         $authName = $serviceObject->getReflectionMethod($method)->getDefinition(Definition::AUTH)->getAuth();
-        $auth = new HtmlElement('<span>', $this->trans('swaggerserver.auth', [$authName]));
+        $auth = new HtmlElement('<span>', $this->translator()->trans('swaggerserver.auth', [$authName]));
         $auth->addClass(['btn', 'btn-warning']);
         $this->masterpage->addTitleBadge($auth);
 
