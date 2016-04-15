@@ -170,7 +170,6 @@ trait PhpDocParser
                     throw new \InvalidArgumentException(
                         sprintf("Invalid param type '%s' on '%s::%s'", $paramType, $class, $name)
                     );
-
             }
         }
 

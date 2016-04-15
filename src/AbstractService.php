@@ -14,13 +14,13 @@ declare (strict_types = 1);
 namespace Cawa\SwaggerServer;
 
 use Cawa\App\App;
+use Cawa\Net\Uri;
 use Cawa\SwaggerServer\Auth\AbstractAuth;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Param;
 use Cawa\SwaggerServer\Reflection\ReflectionMethod;
 use Cawa\SwaggerServer\Renderer\AbstractRenderer;
-use Cawa\Uri\Uri;
 
 abstract class AbstractService
 {

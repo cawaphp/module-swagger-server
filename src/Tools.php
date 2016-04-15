@@ -154,7 +154,6 @@ trait Tools
             '\\' . str_replace('/', '\\', $serviceName);
 
         if (intval(max($this->module()->namespaces[$namespace]->getVersions())) != $version) {
-
             // force loading on main class
             if (!class_exists($serviceClass)) {
                 throw new ResponseCode(sprintf("Unknown service '%s'", $serviceClass), 404);
