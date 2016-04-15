@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Header;
 use Cawa\SwaggerServer\Reflection\Definitions\Param;
@@ -39,10 +39,10 @@ trait SwaggerGenerator
                'title' => $namespace,
                'version' => $version . '.0'
              ],
-             'host' => App::request()->getUri()->getHost(),
+             'host' => HttpApp::request()->getUri()->getHost(),
              'basePath' => '/Json/' . $namespace . '/v' . $version,
              'schemes' => [
-                 App::request()->getUri()->getScheme()
+                 HttpApp::request()->getUri()->getScheme()
              ],
              'consumes' => [
                  'application/json',

@@ -13,7 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer\Renderer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\Error\Handler;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
@@ -67,17 +67,17 @@ abstract class AbstractRenderer
             }
 
             // debug on dev / display trace
-            if (!(App::env() == App::DEV && ob_get_length() > 0)) {
-                App::response()->addHeader('Content-Type', $this->getErrorContentType());
+            if (!(HttpApp::env() == HttpApp::DEV && ob_get_length() > 0)) {
+                HttpApp::response()->addHeader('Content-Type', $this->getErrorContentType());
             }
 
-            App::response()->setStatus($exception->getCode());
-            App::response()->setBody($out);
-            App::end();
+            HttpApp::response()->setStatus($exception->getCode());
+            HttpApp::response()->setBody($out);
+            HttpApp::end();
         } else {
             Handler::log($exception);
 
-            if (App::env() == App::DEV) {
+            if (HttpApp::env() == HttpApp::DEV) {
                 Handler::exceptionHandler($exception);
             } else {
                 $throw = new ResponseCode($exception->getMessage(), 500, $exception);

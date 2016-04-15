@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 use Cawa\SwaggerServer\Reflection\Definitions\Auth;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
@@ -34,7 +34,7 @@ trait Tools
     public function module()
     {
         if (!$this->module) {
-            $this->module = App::instance()->getModule('Cawa\\SwaggerServer\\Module');
+            $this->module = HttpApp::instance()->getModule('Cawa\\SwaggerServer\\Module');
         }
 
         return $this->module;
@@ -184,9 +184,9 @@ trait Tools
                 throw new \LogicException(sprintf("Undefined HttpMethod on '%s::%s'", $serviceClass, $method));
             }
 
-            if ($httpMethod->getHttpMethod() != App::request()->getMethod()) {
+            if ($httpMethod->getHttpMethod() != HttpApp::request()->getMethod()) {
                 throw new ResponseCode(
-                    sprintf("Invalid httpmethod %s on '%s::%s'", App::request()->getMethod(), $serviceClass, $method),
+                    sprintf("Invalid httpmethod %s on '%s::%s'", HttpApp::request()->getMethod(), $serviceClass, $method),
                     405
                 );
             }
@@ -265,7 +265,7 @@ trait Tools
             if (!$auth->promptAuth()) {
                 throw new ResponseCode(sprintf("Unauthorized service '%s::%s'", $serviceClass, $method), 403);
             } else {
-                App::end();
+                HttpApp::end();
             }
         }
 

@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlPage;
@@ -192,7 +192,7 @@ class MasterPage extends HtmlPage
 
         if ($this->data['namespace']) {
             foreach ($this->module()->namespaces[$this->data['namespace']]->getVersions() as $version) {
-                $route = str_replace('VersionVersion', 'Version', App::router()->current() . 'Version');
+                $route = str_replace('VersionVersion', 'Version', HttpApp::router()->current() . 'Version');
                 $this->data['versions'][$version] = $this->route($route, [
                     'namespace' => $this->data['namespace'],
                     'service' => $this->data['service'],

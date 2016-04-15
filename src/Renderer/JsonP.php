@@ -13,7 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer\Renderer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
 class JsonP extends JsonEncapsulated
@@ -46,7 +46,7 @@ class JsonP extends JsonEncapsulated
      */
     public function render(int $statusCode, array $headers, $data) : string
     {
-        $callback = App::request()->getUri()->getQuery('callback');
+        $callback = HttpApp::request()->getUri()->getQuery('callback');
         if (!$callback) {
             throw new ResponseCode('Missing callback for jsonp renderer', 422);
         }

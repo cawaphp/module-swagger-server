@@ -13,6 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs\Method;
 
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Phtml;
 use Cawa\Controller\ViewController;
 use Cawa\Controller\ViewData;
@@ -24,11 +25,10 @@ class Parameters extends ViewController
 {
     use Phtml;
     use ViewData;
+    use TranslatorFactory;
 
     public function __construct(AbstractService $service, string $method)
     {
-        parent::__construct();
-
         $reflection = $service->getReflectionMethod($method);
 
         $this->data['uri'] = $service->getUri($method);

@@ -13,7 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\Net\Uri;
 use Cawa\SwaggerServer\Auth\AbstractAuth;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
@@ -208,13 +208,13 @@ abstract class AbstractService
 
         $out = $this->renderer->render($this->statusCode, $this->headers, $return);
 
-        App::response()->addHeader('Content-Type', $this->renderer->getContentType());
+        HttpApp::response()->addHeader('Content-Type', $this->renderer->getContentType());
         if ($this->renderer->sendHeader()) {
             foreach ($this->headers as $name => $value) {
-                App::response()->addHeader('x-' . ucfirst($name), $value);
+                HttpApp::response()->addHeader('x-' . ucfirst($name), $value);
             }
 
-            App::response()->setStatus($this->statusCode);
+            HttpApp::response()->setStatus($this->statusCode);
         }
 
         return $out;
@@ -230,7 +230,7 @@ abstract class AbstractService
      */
     private function getArgs(string $method) : array
     {
-        if (App::request()->getMethod() == 'POST') {
+        if (HttpApp::request()->getMethod() == 'POST') {
             $data = file_get_contents('php://input');
 
             // hack for multipart form
@@ -238,11 +238,11 @@ abstract class AbstractService
                 $data = http_build_query($_POST);
             }
         } else {
-            $data = App::request()->getUri()->getQuerystring();
+            $data = HttpApp::request()->getUri()->getQuerystring();
         }
 
-        if (App::request()->getMethod() == 'POST' &&
-            App::request()->getHeader('Content-Encoding') == 'gzip') {
+        if (HttpApp::request()->getMethod() == 'POST' &&
+            HttpApp::request()->getHeader('Content-Encoding') == 'gzip') {
             $data = gzdecode($data);
         }
 
@@ -445,7 +445,7 @@ abstract class AbstractService
      */
     public function getUri(string $method) : string
     {
-        $serviceUri = App::router()->getUri('swagger.request', [
+        $serviceUri = HttpApp::router()->getUri('swagger.request', [
             'renderer' => 'Json',
             'version' => $this->getVersion(),
             'namespace' => $this->getNamespace(),

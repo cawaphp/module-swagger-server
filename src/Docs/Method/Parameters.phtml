@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <div class="card-title">
                         <div class="title">
-                            <?= $this->trans("swaggerserver.parameters") ?>
+                            <?= $this->translator()->trans("swaggerserver.parameters") ?>
                         </div>
                     </div>
                     <span class="pull-right">
@@ -27,9 +27,9 @@
                     <table class="table table-bordered table-hover table-striped">
                         <thead>
                             <tr>
-                                <th><?= $this->trans("swaggerserver.name") ?></th>
-                                <th><?= $this->trans("swaggerserver.type") ?></th>
-                                <th><?= $this->trans("swaggerserver.description") ?></th>
+                                <th><?= $this->translator()->trans("swaggerserver.name") ?></th>
+                                <th><?= $this->translator()->trans("swaggerserver.type") ?></th>
+                                <th><?= $this->translator()->trans("swaggerserver.description") ?></th>
                                 <th></th>
                         </thead>
                         <tbody>
@@ -42,11 +42,11 @@
                                     </code>
                                 </td>
                                 <td>
-                                    <?= $this->trans("swaggerserver.type." . $parameter["type"]) ?>
+                                    <?= $this->translator()->trans("swaggerserver.type." . $parameter["type"]) ?>
                                     <?php if ($parameter["validation"]): ?>
                                         <ul>
                                           <?php foreach($parameter['validation'] as $validation): ?>
-                                          <li><?= $this->trans("swaggerserver.validation." . $validation[0], [is_array($validation[1]) ? implode(", ", $validation[1]) : $validation[1]]) ?></li>
+                                          <li><?= $this->translator()->trans("swaggerserver.validation." . $validation[0], [is_array($validation[1]) ? implode(", ", $validation[1]) : $validation[1]]) ?></li>
                                           <?php endforeach; ?>
                                         </ul>
                                     <?php endif; ?>
@@ -69,7 +69,7 @@
                         </tbody>
                     </table>
                     <?php else: ?>
-                        <?= $this->trans("swaggerserver.parameters.noparameter") ?>
+                        <?= $this->translator()->trans("swaggerserver.parameters.noparameter") ?>
                     <?php endif; ?>
                 </div>
             </div>

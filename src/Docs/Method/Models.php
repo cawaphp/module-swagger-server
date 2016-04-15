@@ -37,8 +37,6 @@ class Models extends ViewController
      */
     public function __construct(AbstractService $service, string $method)
     {
-        parent::__construct();
-
         $reflection = $service->getReflectionMethod($method);
 
         if ($reflection->getDefinition(Definition::RESPONSE)) {

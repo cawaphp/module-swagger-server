@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\Controller\AbstractController;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
@@ -27,21 +27,21 @@ class ApiController extends AbstractController
      */
     public function init()
     {
-        if (App::request()->getMethod() == 'OPTIONS') {
-            App::response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-            App::response()->addHeader('Access-Control-Max-Age', '604800');
-            App::response()->addHeader(
+        if (HttpApp::request()->getMethod() == 'OPTIONS') {
+            HttpApp::response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+            HttpApp::response()->addHeader('Access-Control-Max-Age', '604800');
+            HttpApp::response()->addHeader(
                 'Access-Control-Request-Headers',
                 'Origin, Content-Type, Accept, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control'
             );
-            App::end();
+            HttpApp::end();
         }
 
         // Enable CORS
-        if (App::request()->getHeader('Origin')) {
-            App::response()->addHeader('Access-Control-Allow-Origin', App::request()->getHeader('Origin'));
-            App::response()->addHeader('Access-Control-Allow-Credentials', 'true');
-            App::response()->addHeader(
+        if (HttpApp::request()->getHeader('Origin')) {
+            HttpApp::response()->addHeader('Access-Control-Allow-Origin', HttpApp::request()->getHeader('Origin'));
+            HttpApp::response()->addHeader('Access-Control-Allow-Credentials', 'true');
+            HttpApp::response()->addHeader(
                 'Access-Control-Allow-Headers',
                 'X-Requested-With, Content-Type, Accept, X-Apikey'
             );
