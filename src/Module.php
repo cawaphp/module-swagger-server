@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\HttpApp;
 use Cawa\Router\Route;
 use Cawa\Router\RouterFactory;
 

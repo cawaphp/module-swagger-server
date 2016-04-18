@@ -13,13 +13,12 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs;
 
-use Cawa\App\HttpApp;
+use Cawa\Controller\ViewController;
+use Cawa\Controller\ViewDataTrait;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlPage;
 use Cawa\Renderer\PhtmlTrait;
-use Cawa\Controller\ViewController;
-use Cawa\Controller\ViewDataTrait;
 use Cawa\Router\RouterFactory;
 use Cawa\SwaggerServer\ToolsTrait;
 

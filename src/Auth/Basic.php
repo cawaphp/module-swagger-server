@@ -14,7 +14,6 @@ declare (strict_types = 1);
 namespace Cawa\SwaggerServer\Auth;
 
 use Cawa\App\HttpFactory;
-use Cawa\App\HttpApp;
 use Cawa\Net\Ip;
 
 class Basic extends AbstractAuth

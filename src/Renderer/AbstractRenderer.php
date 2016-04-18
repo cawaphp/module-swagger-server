@@ -13,8 +13,8 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer\Renderer;
 
-use Cawa\App\HttpFactory;
 use Cawa\App\AbstractApp;
+use Cawa\App\HttpFactory;
 use Cawa\Error\Handler;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 

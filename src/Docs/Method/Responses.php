@@ -13,10 +13,10 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer\Docs\Method;
 
-use Cawa\Intl\TranslatorFactory;
-use Cawa\Renderer\PhtmlTrait;
 use Cawa\Controller\ViewController;
 use Cawa\Controller\ViewDataTrait;
+use Cawa\Intl\TranslatorFactory;
+use Cawa\Renderer\PhtmlTrait;
 use Cawa\SwaggerServer\AbstractService;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Header;

@@ -14,7 +14,6 @@ declare (strict_types = 1);
 namespace Cawa\SwaggerServer\Renderer;
 
 use Cawa\App\HttpFactory;
-use Cawa\App\HttpApp;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
 class JsonP extends JsonEncapsulated
