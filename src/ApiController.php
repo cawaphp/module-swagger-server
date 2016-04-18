@@ -13,12 +13,14 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\HttpApp;
+use Cawa\App\HttpFactory;
+use Cawa\App\AbstractApp;
 use Cawa\Controller\AbstractController;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 
 class ApiController extends AbstractController
 {
+    use HttpFactory;
     use ToolsTrait;
     use SwaggerGeneratorTrait;
 
@@ -27,21 +29,21 @@ class ApiController extends AbstractController
      */
     public function init()
     {
-        if (HttpApp::request()->getMethod() == 'OPTIONS') {
-            HttpApp::response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-            HttpApp::response()->addHeader('Access-Control-Max-Age', '604800');
-            HttpApp::response()->addHeader(
+        if ($this->request()->getMethod() == 'OPTIONS') {
+            $this->response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+            $this->response()->addHeader('Access-Control-Max-Age', '604800');
+            $this->response()->addHeader(
                 'Access-Control-Request-Headers',
                 'Origin, Content-Type, Accept, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control'
             );
-            HttpApp::end();
+            AbstractApp::end();
         }
 
         // Enable CORS
-        if (HttpApp::request()->getHeader('Origin')) {
-            HttpApp::response()->addHeader('Access-Control-Allow-Origin', HttpApp::request()->getHeader('Origin'));
-            HttpApp::response()->addHeader('Access-Control-Allow-Credentials', 'true');
-            HttpApp::response()->addHeader(
+        if ($this->request()->getHeader('Origin')) {
+            $this->response()->addHeader('Access-Control-Allow-Origin', $this->request()->getHeader('Origin'));
+            $this->response()->addHeader('Access-Control-Allow-Credentials', 'true');
+            $this->response()->addHeader(
                 'Access-Control-Allow-Headers',
                 'X-Requested-With, Content-Type, Accept, X-Apikey'
             );

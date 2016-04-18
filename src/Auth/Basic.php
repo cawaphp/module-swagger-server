@@ -13,11 +13,14 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer\Auth;
 
+use Cawa\App\HttpFactory;
 use Cawa\App\HttpApp;
 use Cawa\Net\Ip;
 
 class Basic extends AbstractAuth
 {
+    use HttpFactory;
+
     /**
      * @var array
      */
@@ -41,8 +44,8 @@ class Basic extends AbstractAuth
      */
     private function getUserPassword()
     {
-        $user = HttpApp::request()->getServer('PHP_AUTH_USER');
-        $password = HttpApp::request()->getServer('PHP_AUTH_PW');
+        $user = $this->request()->getServer('PHP_AUTH_USER');
+        $password = $this->request()->getServer('PHP_AUTH_PW');
 
         if ($user && $password) {
             return [$user, $password];
@@ -50,12 +53,12 @@ class Basic extends AbstractAuth
 
         // Get current user password
         $header = null;
-        if (HttpApp::request()->getServer('HTTP_AUTHORIZATION')) {
-            $header = HttpApp::request()->getServer('HTTP_AUTHORIZATION');
-        } elseif (HttpApp::request()->getServer('REDIRECT_HTTP_AUTHORIZATION')) {
-            $header = HttpApp::request()->getServer('REDIRECT_HTTP_AUTHORIZATION');
-        } elseif (HttpApp::request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION')) {
-            $header = HttpApp::request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION');
+        if ($this->request()->getServer('HTTP_AUTHORIZATION')) {
+            $header = $this->request()->getServer('HTTP_AUTHORIZATION');
+        } elseif ($this->request()->getServer('REDIRECT_HTTP_AUTHORIZATION')) {
+            $header = $this->request()->getServer('REDIRECT_HTTP_AUTHORIZATION');
+        } elseif ($this->request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION')) {
+            $header = $this->request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION');
         }
 
         if (is_null($header)) {
@@ -149,8 +152,8 @@ class Basic extends AbstractAuth
     public function promptAuth() : bool
     {
         if ($this->getUserPassword() === false && !$this->getAuth()) {
-            HttpApp::response()->addHeader('WWW-Authenticate', 'Basic realm="SwaggerApi"');
-            HttpApp::response()->setStatus(401);
+            $this->response()->addHeader('WWW-Authenticate', 'Basic realm="SwaggerApi"');
+            $this->response()->setStatus(401);
 
             return true;
         }

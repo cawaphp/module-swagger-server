@@ -13,6 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
+use Cawa\App\HttpFactory;
 use Cawa\App\HttpApp;
 use Cawa\Net\Uri;
 use Cawa\Router\RouterFactory;
@@ -25,6 +26,7 @@ use Cawa\SwaggerServer\Renderer\AbstractRenderer;
 
 abstract class AbstractService
 {
+    use HttpFactory;
     use RouterFactory;
 
     /**
@@ -211,13 +213,13 @@ abstract class AbstractService
 
         $out = $this->renderer->render($this->statusCode, $this->headers, $return);
 
-        HttpApp::response()->addHeader('Content-Type', $this->renderer->getContentType());
+        $this->response()->addHeader('Content-Type', $this->renderer->getContentType());
         if ($this->renderer->sendHeader()) {
             foreach ($this->headers as $name => $value) {
-                HttpApp::response()->addHeader('x-' . ucfirst($name), $value);
+                $this->response()->addHeader('x-' . ucfirst($name), $value);
             }
 
-            HttpApp::response()->setStatus($this->statusCode);
+            $this->response()->setStatus($this->statusCode);
         }
 
         return $out;
@@ -233,7 +235,7 @@ abstract class AbstractService
      */
     private function getArgs(string $method) : array
     {
-        if (HttpApp::request()->getMethod() == 'POST') {
+        if ($this->request()->getMethod() == 'POST') {
             $data = file_get_contents('php://input');
 
             // hack for multipart form
@@ -241,11 +243,11 @@ abstract class AbstractService
                 $data = http_build_query($_POST);
             }
         } else {
-            $data = HttpApp::request()->getUri()->getQuerystring();
+            $data = $this->request()->getUri()->getQuerystring();
         }
 
-        if (HttpApp::request()->getMethod() == 'POST' &&
-            HttpApp::request()->getHeader('Content-Encoding') == 'gzip') {
+        if ($this->request()->getMethod() == 'POST' &&
+            $this->request()->getHeader('Content-Encoding') == 'gzip') {
             $data = gzdecode($data);
         }
 
