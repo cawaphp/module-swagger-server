@@ -193,7 +193,7 @@ class MasterPage extends HtmlPage
 
         if ($this->data['namespace']) {
             foreach ($this->module()->namespaces[$this->data['namespace']]->getVersions() as $version) {
-                $route = str_replace('VersionVersion', 'Version', self::router()->current() . 'Version');
+                $route = str_replace('VersionVersion', 'Version', self::router()->current()->getName() . 'Version');
                 $this->data['versions'][$version] = $this->router()->getUri($route, [
                     'namespace' => $this->data['namespace'],
                     'service' => $this->data['service'],
