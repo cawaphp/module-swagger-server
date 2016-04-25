@@ -141,7 +141,7 @@ class MasterPage extends HtmlPage
 
             $servicesList = [];
             foreach ($this->listServices($namespaceName, $version) as $serviceName => $currentService) {
-                $link = $this->router()->getUri('swagger/docService' . ($this->data['version'] ? 'Version' : ''), [
+                $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/service', [
                     'namespace' => $namespaceName,
                     'service' => $serviceName,
                     'version' => $version,
@@ -157,7 +157,7 @@ class MasterPage extends HtmlPage
 
                 if ($serviceName == $this->data['service']) {
                     foreach ($currentService->getMethods() as $methodName) {
-                        $link = $this->router()->getUri('swagger/docMethod' . ($this->data['version'] ? 'Version' : ''), [
+                        $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/method' , [
                             'namespace' => $namespaceName,
                             'service' => $serviceName,
                             'method' => $methodName,
@@ -177,7 +177,7 @@ class MasterPage extends HtmlPage
                 $servicesList[$serviceName] = $methodsList;
             }
 
-            $link = $this->router()->getUri('swagger/docNamespace' . ($this->data['version'] ? 'Version' : ''), [
+            $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/namespace', [
                 'namespace' => $namespaceName,
                 'version' => $version,
             ]);
@@ -193,12 +193,17 @@ class MasterPage extends HtmlPage
 
         if ($this->data['namespace']) {
             foreach ($this->module()->namespaces[$this->data['namespace']]->getVersions() as $version) {
-                $route = str_replace('VersionVersion', 'Version', self::router()->current()->getName() . 'Version');
-                $this->data['versions'][$version] = $this->router()->getUri($route, [
+
+                $route = self::router()->current()->getName();
+                if ($this->maxVersion($this->data['namespace']) == $version) {
+                    $route = str_replace('version/', '', self::router()->current()->getName());
+                }
+
+                $this->data['versions'][$version] = (string) $this->router()->getUri($route, [
                     'namespace' => $this->data['namespace'],
                     'service' => $this->data['service'],
                     'method' => $this->data['method'],
-                    'version' => $this->maxVersion($this->data['namespace']) != $version ? $version : ''
+                    'version' => $this->maxVersion($this->data['namespace']) != $version ? $version : null
                 ]);
             }
             $this->data['maxVersion'] = $this->maxVersion($this->data['namespace']);
