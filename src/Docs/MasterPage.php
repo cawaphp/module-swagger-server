@@ -141,7 +141,7 @@ class MasterPage extends HtmlPage
 
             $servicesList = [];
             foreach ($this->listServices($namespaceName, $version) as $serviceName => $currentService) {
-                $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/service', [
+                $link = $this->router()->getUri('swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/service', [
                     'namespace' => $namespaceName,
                     'service' => $serviceName,
                     'version' => $version,
@@ -157,7 +157,7 @@ class MasterPage extends HtmlPage
 
                 if ($serviceName == $this->data['service']) {
                     foreach ($currentService->getMethods() as $methodName) {
-                        $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/method' , [
+                        $link = $this->router()->getUri('swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/method', [
                             'namespace' => $namespaceName,
                             'service' => $serviceName,
                             'method' => $methodName,
@@ -177,7 +177,7 @@ class MasterPage extends HtmlPage
                 $servicesList[$serviceName] = $methodsList;
             }
 
-            $link = $this->router()->getUri('swagger/doc/'. ($this->data['version'] ? 'version' : '') . '/namespace', [
+            $link = $this->router()->getUri('swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/namespace', [
                 'namespace' => $namespaceName,
                 'version' => $version,
             ]);
@@ -193,7 +193,6 @@ class MasterPage extends HtmlPage
 
         if ($this->data['namespace']) {
             foreach ($this->module()->namespaces[$this->data['namespace']]->getVersions() as $version) {
-
                 $route = self::router()->current()->getName();
                 if ($this->maxVersion($this->data['namespace']) == $version) {
                     $route = str_replace('version/', '', self::router()->current()->getName());
