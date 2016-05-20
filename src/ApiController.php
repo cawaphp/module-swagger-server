@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\AbstractApp;
 use Cawa\App\HttpApp;
 use Cawa\App\HttpFactory;
 use Cawa\Controller\AbstractController;
