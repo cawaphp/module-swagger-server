@@ -14,6 +14,7 @@ declare (strict_types = 1);
 namespace Cawa\SwaggerServer\Renderer;
 
 use Cawa\App\AbstractApp;
+use Cawa\App\HttpApp;
 use Cawa\App\HttpFactory;
 use Cawa\Error\Handler;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
@@ -75,7 +76,7 @@ abstract class AbstractRenderer
 
             $this->response()->setStatus($exception->getCode());
             $this->response()->setBody($out);
-            AbstractApp::end();
+            HttpApp::instance()->end();
         } else {
             Handler::log($exception);
 

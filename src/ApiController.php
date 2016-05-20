@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer;
 
 use Cawa\App\AbstractApp;
+use Cawa\App\HttpApp;
 use Cawa\App\HttpFactory;
 use Cawa\Controller\AbstractController;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
@@ -36,7 +37,7 @@ class ApiController extends AbstractController
                 'Access-Control-Request-Headers',
                 'Origin, Content-Type, Accept, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control'
             );
-            AbstractApp::end();
+            HttpApp::instance()->end();
         }
 
         // Enable CORS

@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\SwaggerServer;
 
 use Cawa\App\AbstractApp;
+use Cawa\App\HttpApp;
 use Cawa\App\HttpFactory;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 use Cawa\SwaggerServer\Reflection\Definitions\Auth;
@@ -268,7 +269,7 @@ trait ToolsTrait
             if (!$auth->promptAuth()) {
                 throw new ResponseCode(sprintf("Unauthorized service '%s::%s'", $serviceClass, $method), 403);
             } else {
-                AbstractApp::end();
+                HttpApp::instance()->end();
             }
         }
 
