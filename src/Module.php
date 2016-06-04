@@ -63,7 +63,7 @@ class Module extends \Cawa\App\Module
 
         // main api end point
         self::router()->addRoutes([
-            Route::create()->setName('swagger/request')
+            (new Route())->setName('swagger/request')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch('/' . implode('/', [
                     $renderer,
@@ -77,7 +77,7 @@ class Module extends \Cawa\App\Module
 
         // swagger generation
         self::router()->addRoutes([
-            Route::create()->setName('swagger/generation/method')
+            (new Route())->setName('swagger/generation/method')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch('/' . implode('/', [
                     'Swagger',
@@ -90,7 +90,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/generation/service')
+            (new Route())->setName('swagger/generation/service')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch('/' . implode('/', [
                     'Swagger',
@@ -102,7 +102,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/generation/namespace')
+            (new Route())->setName('swagger/generation/namespace')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch('/' . implode('/', [
                     'Swagger',
@@ -114,7 +114,7 @@ class Module extends \Cawa\App\Module
 
         // docs with version
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/version/method')
+            (new Route())->setName('swagger/doc/version/method')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -128,7 +128,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/version/service')
+            (new Route())->setName('swagger/doc/version/service')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -140,7 +140,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/version/namespace')
+            (new Route())->setName('swagger/doc/version/namespace')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -152,7 +152,7 @@ class Module extends \Cawa\App\Module
 
         // docs without version
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/method')
+            (new Route())->setName('swagger/doc/method')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -165,7 +165,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/service')
+            (new Route())->setName('swagger/doc/service')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -176,7 +176,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/namespace')
+            (new Route())->setName('swagger/doc/namespace')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
@@ -186,7 +186,7 @@ class Module extends \Cawa\App\Module
         ]);
 
         self::router()->addRoutes([
-            Route::create()->setName('swagger/doc/home')
+            (new Route())->setName('swagger/doc/home')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs'
