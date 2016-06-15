@@ -85,7 +85,7 @@ class Controller extends AbstractController
         $serviceObject = $this->listServices($namespace, $version, $service)[0];
 
         $authName = $serviceObject->getReflectionMethod($method)->getDefinition(Definition::AUTH)->getAuth();
-        $auth = new HtmlElement('<span>', $this->translator()->trans('swaggerserver.auth', [$authName]));
+        $auth = new HtmlElement('<span>', $this->trans('swaggerserver.auth', [$authName]));
         $auth->addClass(['btn', 'btn-warning']);
         $this->masterpage->addTitleBadge($auth);
 

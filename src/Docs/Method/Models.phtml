@@ -10,7 +10,7 @@ if (isset($models)) :
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <div class="title"><?= $this->translator()->trans("swaggerserver.models") ?></div>
+                    <div class="title"><?= $this->trans("swaggerserver.models") ?></div>
                 </div>
             </div>
             <div class="card-body">
@@ -20,9 +20,9 @@ if (isset($models)) :
                 <table class="table table-bordered table-hover table-striped table-condensed table-padding">
                     <thead>
                         <tr>
-                            <th><?= $this->translator()->trans("swaggerserver.name") ?></th>
-                            <th><?= $this->translator()->trans("swaggerserver.type") ?></th>
-                            <th><?= $this->translator()->trans("swaggerserver.description") ?></th>
+                            <th><?= $this->trans("swaggerserver.name") ?></th>
+                            <th><?= $this->trans("swaggerserver.type") ?></th>
+                            <th><?= $this->trans("swaggerserver.description") ?></th>
                     </thead>
                     <tbody>
                         <?php foreach($model["properties"] as $name => $property) : ?>
@@ -34,8 +34,8 @@ if (isset($models)) :
                             </td>
                             <td>
                                 <?php foreach($property["types"] as $type) : ?>
-                                <?php if ($this->translator()->trans("swaggerserver.type." . $type)): ?>
-                                <?= $this->translator()->trans("swaggerserver.type." . $type) ?><br />
+                                <?php if ($this->trans("swaggerserver.type." . $type)): ?>
+                                <?= $this->trans("swaggerserver.type." . $type) ?><br />
                                 <?php else: ?>
                                 <a href="#<?= $type ?>"><?= $type ?></a><br />
                                 <?php endif ?>
