@@ -49,7 +49,7 @@ class Controller extends AbstractController
         if ($namespace) {
             $route = $method ? 'method' : ($service ? 'service' : 'namespace');
             $swagger = new HtmlElement('<a>', '{···}');
-            $swagger->addAttribute('href', (string) $this->router()->getUri('swagger/generation/' . $route, [
+            $swagger->addAttribute('href', (string) $this->uri('swagger/generation/' . $route, [
                 'namespace' => $namespace,
                 'version' => $version ? $version : $this->maxVersion($namespace),
                 'service' => $service,

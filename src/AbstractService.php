@@ -449,7 +449,7 @@ abstract class AbstractService
      */
     public function getUri(string $method) : string
     {
-        $serviceUri = (string) $this->router()->getUri('swagger/request', [
+        $serviceUri = (string) $this->uri('swagger/request', [
             'renderer' => 'Json',
             'version' => $this->getVersion(),
             'namespace' => $this->getNamespace(),
