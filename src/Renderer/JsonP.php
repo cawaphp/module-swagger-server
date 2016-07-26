@@ -48,7 +48,7 @@ class JsonP extends JsonEncapsulated
      */
     public function render(int $statusCode, array $headers, $data) : string
     {
-        $callback = $this->request()->getUri()->getQuery('callback');
+        $callback = self::request()->getUri()->getQuery('callback');
         if (!$callback) {
             throw new ResponseCode('Missing callback for jsonp renderer', 422);
         }

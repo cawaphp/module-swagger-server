@@ -71,11 +71,11 @@ abstract class AbstractRenderer
 
             // debug on dev / display trace
             if (!(AbstractApp::env() == AbstractApp::DEV && ob_get_length() > 0)) {
-                $this->response()->addHeader('Content-Type', $this->getErrorContentType());
+                self::response()->addHeader('Content-Type', $this->getErrorContentType());
             }
 
-            $this->response()->setStatus($exception->getCode());
-            $this->response()->setBody($out);
+            self::response()->setStatus($exception->getCode());
+            self::response()->setBody($out);
             HttpApp::instance()->end();
         } else {
             Handler::log($exception);

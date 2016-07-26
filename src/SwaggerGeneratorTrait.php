@@ -41,10 +41,10 @@ trait SwaggerGeneratorTrait
                'title' => $namespace,
                'version' => $version . '.0'
              ],
-             'host' => $this->request()->getUri()->getHost(),
+             'host' => self::request()->getUri()->getHost(),
              'basePath' => '/Json/' . $namespace . '/v' . $version,
              'schemes' => [
-                 $this->request()->getUri()->getScheme()
+                 self::request()->getUri()->getScheme()
              ],
              'consumes' => [
                  'application/json',

@@ -43,8 +43,8 @@ class Basic extends AbstractAuth
      */
     private function getUserPassword()
     {
-        $user = $this->request()->getServer('PHP_AUTH_USER');
-        $password = $this->request()->getServer('PHP_AUTH_PW');
+        $user = self::request()->getServer('PHP_AUTH_USER');
+        $password = self::request()->getServer('PHP_AUTH_PW');
 
         if ($user && $password) {
             return [$user, $password];
@@ -52,12 +52,12 @@ class Basic extends AbstractAuth
 
         // Get current user password
         $header = null;
-        if ($this->request()->getServer('HTTP_AUTHORIZATION')) {
-            $header = $this->request()->getServer('HTTP_AUTHORIZATION');
-        } elseif ($this->request()->getServer('REDIRECT_HTTP_AUTHORIZATION')) {
-            $header = $this->request()->getServer('REDIRECT_HTTP_AUTHORIZATION');
-        } elseif ($this->request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION')) {
-            $header = $this->request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION');
+        if (self::request()->getServer('HTTP_AUTHORIZATION')) {
+            $header = self::request()->getServer('HTTP_AUTHORIZATION');
+        } elseif (self::request()->getServer('REDIRECT_HTTP_AUTHORIZATION')) {
+            $header = self::request()->getServer('REDIRECT_HTTP_AUTHORIZATION');
+        } elseif (self::request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION')) {
+            $header = self::request()->getServer('REDIRECT_REDIRECT_HTTP_AUTHORIZATION');
         }
 
         if (is_null($header)) {
@@ -151,8 +151,8 @@ class Basic extends AbstractAuth
     public function promptAuth() : bool
     {
         if ($this->getUserPassword() === false && !$this->getAuth()) {
-            $this->response()->addHeader('WWW-Authenticate', 'Basic realm="SwaggerApi"');
-            $this->response()->setStatus(401);
+            self::response()->addHeader('WWW-Authenticate', 'Basic realm="SwaggerApi"');
+            self::response()->setStatus(401);
 
             return true;
         }

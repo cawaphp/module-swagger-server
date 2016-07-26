@@ -212,13 +212,13 @@ abstract class AbstractService
 
         $out = $this->renderer->render($this->statusCode, $this->headers, $return);
 
-        $this->response()->addHeader('Content-Type', $this->renderer->getContentType());
+        self::response()->addHeader('Content-Type', $this->renderer->getContentType());
         if ($this->renderer->sendHeader()) {
             foreach ($this->headers as $name => $value) {
-                $this->response()->addHeader('x-' . ucfirst($name), $value);
+                self::response()->addHeader('x-' . ucfirst($name), $value);
             }
 
-            $this->response()->setStatus($this->statusCode);
+            self::response()->setStatus($this->statusCode);
         }
 
         return $out;
@@ -234,7 +234,7 @@ abstract class AbstractService
      */
     private function getArgs(string $method) : array
     {
-        if ($this->request()->getMethod() == 'POST') {
+        if (self::request()->getMethod() == 'POST') {
             $data = file_get_contents('php://input');
 
             // hack for multipart form
@@ -242,11 +242,11 @@ abstract class AbstractService
                 $data = http_build_query($_POST);
             }
         } else {
-            $data = $this->request()->getUri()->getQuerystring();
+            $data = self::request()->getUri()->getQuerystring();
         }
 
-        if ($this->request()->getMethod() == 'POST' &&
-            $this->request()->getHeader('Content-Encoding') == 'gzip') {
+        if (self::request()->getMethod() == 'POST' &&
+            self::request()->getHeader('Content-Encoding') == 'gzip') {
             $data = gzdecode($data);
         }
 
@@ -449,7 +449,7 @@ abstract class AbstractService
      */
     public function getUri(string $method) : string
     {
-        $serviceUri = (string) $this->uri('swagger/request', [
+        $serviceUri = (string) self::uri('swagger/request', [
             'renderer' => 'Json',
             'version' => $this->getVersion(),
             'namespace' => $this->getNamespace(),

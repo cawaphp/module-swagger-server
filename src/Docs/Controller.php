@@ -39,7 +39,7 @@ class Controller extends AbstractController
      */
     public function init(string $namespace = null, string $service = null, string $method = null, int $version = null)
     {
-        $this->translator()->addFile(__DIR__ . '/../lang/global', 'swaggerserver');
+        self::translator()->addFile(__DIR__ . '/../lang/global', 'swaggerserver');
 
         $this->masterpage = new MasterPage($namespace, $service, $method, $version);
         if (!is_numeric($version) && $version) {
@@ -49,7 +49,7 @@ class Controller extends AbstractController
         if ($namespace) {
             $route = $method ? 'method' : ($service ? 'service' : 'namespace');
             $swagger = new HtmlElement('<a>', '{···}');
-            $swagger->addAttribute('href', (string) $this->uri('swagger/generation/' . $route, [
+            $swagger->addAttribute('href', (string) self::uri('swagger/generation/' . $route, [
                 'namespace' => $namespace,
                 'version' => $version ? $version : $this->maxVersion($namespace),
                 'service' => $service,
@@ -85,7 +85,7 @@ class Controller extends AbstractController
         $serviceObject = $this->listServices($namespace, $version, $service)[0];
 
         $authName = $serviceObject->getReflectionMethod($method)->getDefinition(Definition::AUTH)->getAuth();
-        $auth = new HtmlElement('<span>', $this->trans('swaggerserver.auth', [$authName]));
+        $auth = new HtmlElement('<span>', self::trans('swaggerserver.auth', [$authName]));
         $auth->addClass(['btn', 'btn-warning']);
         $this->masterpage->addTitleBadge($auth);
 

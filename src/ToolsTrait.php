@@ -188,9 +188,9 @@ trait ToolsTrait
                 throw new \LogicException(sprintf("Undefined HttpMethod on '%s::%s'", $serviceClass, $method));
             }
 
-            if ($httpMethod->getHttpMethod() != $this->request()->getMethod()) {
+            if ($httpMethod->getHttpMethod() != self::request()->getMethod()) {
                 throw new ResponseCode(
-                    sprintf("Invalid httpmethod %s on '%s::%s'", $this->request()->getMethod(), $serviceClass, $method),
+                    sprintf("Invalid httpmethod %s on '%s::%s'", self::request()->getMethod(), $serviceClass, $method),
                     405
                 );
             }

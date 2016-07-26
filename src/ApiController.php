@@ -29,10 +29,10 @@ class ApiController extends AbstractController
      */
     public function init()
     {
-        if ($this->request()->getMethod() == 'OPTIONS') {
-            $this->response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-            $this->response()->addHeader('Access-Control-Max-Age', '604800');
-            $this->response()->addHeader(
+        if (self::request()->getMethod() == 'OPTIONS') {
+            self::response()->addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+            self::response()->addHeader('Access-Control-Max-Age', '604800');
+            self::response()->addHeader(
                 'Access-Control-Request-Headers',
                 'Origin, Content-Type, Accept, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control'
             );
@@ -40,10 +40,10 @@ class ApiController extends AbstractController
         }
 
         // Enable CORS
-        if ($this->request()->getHeader('Origin')) {
-            $this->response()->addHeader('Access-Control-Allow-Origin', $this->request()->getHeader('Origin'));
-            $this->response()->addHeader('Access-Control-Allow-Credentials', 'true');
-            $this->response()->addHeader(
+        if (self::request()->getHeader('Origin')) {
+            self::response()->addHeader('Access-Control-Allow-Origin', self::request()->getHeader('Origin'));
+            self::response()->addHeader('Access-Control-Allow-Credentials', 'true');
+            self::response()->addHeader(
                 'Access-Control-Allow-Headers',
                 'X-Requested-With, Content-Type, Accept, X-Apikey'
             );
