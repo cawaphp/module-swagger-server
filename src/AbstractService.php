@@ -44,7 +44,7 @@ abstract class AbstractService
     /**
      * @param string $name
      *
-     * @return $this
+     * @return $this|self
      */
     public function setName(string $name) : self
     {
@@ -69,7 +69,7 @@ abstract class AbstractService
     /**
      * @param string $namespace
      *
-     * @return $this
+     * @return $this|self
      */
     public function setNamespace(string $namespace) : self
     {
@@ -94,7 +94,7 @@ abstract class AbstractService
     /**
      * @param int $version
      *
-     * @return $this
+     * @return $this|self
      */
     public function setVersion(int $version)
     {
@@ -172,7 +172,7 @@ abstract class AbstractService
     /**
      * @param int $statusCode
      *
-     * @return $this
+     * @return $this|self
      */
     protected function setStatusCode(int $statusCode) : self
     {
@@ -190,7 +190,7 @@ abstract class AbstractService
      * @param string $name
      * @param string $value
      *
-     * @return $this
+     * @return $this|self
      */
     protected function addHeader(string $name, string $value) : self
     {

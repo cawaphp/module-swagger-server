@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer\Docs;
 
@@ -92,7 +92,7 @@ class MasterPage extends HtmlPage
     /**
      * @param ViewController $element
      *
-     * @return $this
+     * @return $this|self
      */
     public function addMain(ViewController $element) : self
     {
@@ -109,7 +109,7 @@ class MasterPage extends HtmlPage
     /**
      * @param ViewController $element
      *
-     * @return $this
+     * @return $this|self
      */
     public function addTitleBadge(ViewController $element) : self
     {
@@ -121,7 +121,7 @@ class MasterPage extends HtmlPage
     /**
      * @param string $subtitle
      *
-     * @return $this
+     * @return $this|self
      */
     public function setSubtitle(string $subtitle) : self
     {

@@ -32,7 +32,7 @@ class DateTime extends \DateTime implements \JsonSerializable
      * @throws ResponseCode
      * @throws \Exception
      *
-     * @return DateTime
+     * @return $this|self
      */
     public static function createFromInput($value)
     {
@@ -63,7 +63,7 @@ class DateTime extends \DateTime implements \JsonSerializable
      *
      * @throws \Exception
      *
-     * @return DateTime
+     * @return $this|self
      *
      * @link http://php.net/manual/en/datetime.createfromformat.php
      */
