@@ -293,8 +293,6 @@ trait ToolsTrait
             }
         }
 
-        backtrace();
-
         return null;
     }
 

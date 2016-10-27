@@ -70,7 +70,7 @@ abstract class AbstractRenderer
             }
 
             // debug on dev / display trace
-            if (!(AbstractApp::env() == AbstractApp::DEV && ob_get_length() > 0)) {
+            if (!(AbstractApp::env() != AbstractApp::PRODUCTION && ob_get_length() > 0)) {
                 self::response()->addHeader('Content-Type', $this->getErrorContentType());
             }
 
@@ -80,7 +80,7 @@ abstract class AbstractRenderer
         } else {
             Handler::log($exception);
 
-            if (AbstractApp::env() == AbstractApp::DEV) {
+            if (AbstractApp::env() != AbstractApp::PRODUCTION) {
                 Handler::exceptionHandler($exception);
             } else {
                 $throw = new ResponseCode($exception->getMessage(), 500, $exception);
