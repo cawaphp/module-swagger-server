@@ -15,7 +15,6 @@ namespace Cawa\SwaggerServer;
 
 use Cawa\App\AbstractApp;
 use Cawa\App\HttpApp;
-use Cawa\App\HttpFactory;
 use Cawa\SwaggerServer\Exceptions\ResponseCode;
 use Cawa\SwaggerServer\Reflection\Definitions\Auth;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
@@ -25,8 +24,6 @@ use Cawa\SwaggerServer\Renderer\AbstractRenderer;
 
 trait ToolsTrait
 {
-    use HttpFactory;
-
     /**
      * @var \Cawa\SwaggerServer\Module
      */

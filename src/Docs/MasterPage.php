@@ -142,7 +142,7 @@ class MasterPage extends HtmlPage
             $servicesList = [];
             foreach ($this->listServices($namespaceName, $version) as $serviceName => $currentService) {
                 $link = self::uri(
-                    'swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/service',
+                    'swagger/doc/' . ($this->data['version'] ? 'version/' : '') . 'service',
                     [
                         'namespace' => $namespaceName,
                         'service' => $serviceName,
@@ -161,7 +161,7 @@ class MasterPage extends HtmlPage
                 if ($serviceName == $this->data['service']) {
                     foreach ($currentService->getMethods() as $methodName) {
                         $link = self::uri(
-                            'swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/method',
+                            'swagger/doc/' . ($this->data['version'] ? 'version/' : '') . 'method',
                             [
                                 'namespace' => $namespaceName,
                                 'service' => $serviceName,
@@ -184,7 +184,7 @@ class MasterPage extends HtmlPage
             }
 
             $link = self::uri(
-                'swagger/doc/' . ($this->data['version'] ? 'version' : '') . '/namespace',
+                'swagger/doc/' . ($this->data['version'] ? 'version/' : '') . 'namespace',
                 [
                     'namespace' => $namespaceName,
                     'version' => $version,

@@ -13,7 +13,6 @@ declare (strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
-use Cawa\App\HttpFactory;
 use Cawa\SwaggerServer\Reflection\Definitions\Definition;
 use Cawa\SwaggerServer\Reflection\Definitions\Header;
 use Cawa\SwaggerServer\Reflection\Definitions\Param;
@@ -25,8 +24,6 @@ use Cawa\SwaggerServer\Reflection\Definitions\Throws;
  */
 trait SwaggerGeneratorTrait
 {
-    use HttpFactory;
-
     /**
      * @param string $namespace
      * @param int $version
