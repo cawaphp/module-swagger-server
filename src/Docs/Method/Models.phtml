@@ -34,8 +34,8 @@ if (isset($models)) :
                             </td>
                             <td>
                                 <?php foreach($property["types"] as $type) : ?>
-                                <?php if ($this->trans("swaggerserver.type." . $type)): ?>
-                                <?= $this->trans("swaggerserver.type." . $type) ?><br />
+                                <?php if ($this->trans("swaggerserver.type/" . $type)): ?>
+                                <?= $this->trans("swaggerserver.type/" . $type) ?><br />
                                 <?php else: ?>
                                 <a href="#<?= $type ?>"><?= $type ?></a><br />
                                 <?php endif ?>

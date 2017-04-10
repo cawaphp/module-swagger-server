@@ -31,14 +31,14 @@
                             <td>
                                 <?php if(isset($response["type"])): ?>
                                 <?php foreach($response["type"] as $type): ?>
-                                <?php if ($this->trans("swaggerserver.type." . $type)): ?>
-                                <?= $this->trans("swaggerserver.type." . $type) ?>
+                                <?php if ($this->trans("swaggerserver.type/" . $type)): ?>
+                                <?= $this->trans("swaggerserver.type/" . $type) ?>
                                 <?php else: ?>
                                 <a href="#<?= $type ?>"><?= $type ?></a>
                                 <?php endif; ?>
                                 <?php endforeach; ?>
                                 <?php else: ?>
-                                <?= $this->trans("swaggerserver.type.void") ?>
+                                <?= $this->trans("swaggerserver.type/void") ?>
                                 <?php endif; ?>
                             </td>
                             <td><?= $response["comment"] ?? "" ?></td>
@@ -50,7 +50,7 @@
                                 <code>X-<?= ucfirst($header["name"]) ?></code>
                             </td>
                             <td>
-                                Header <?= $this->trans("swaggerserver.type." . $header["type"]) ? $this->trans("swaggerserver.type." . $header["type"]) : $header["type"] ?>
+                                Header <?= $this->trans("swaggerserver.type/" . $header["type"]) ? $this->trans("swaggerserver.type/" . $header["type"]) : $header["type"] ?>
                             </td>
                             <td><?= $header["comment"] ?></td>
                         </tr>

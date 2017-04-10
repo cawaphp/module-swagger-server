@@ -1,0 +1,35 @@
+responses: Réponses
+models: Modèles
+auth: 'Authentification : %s'
+name: Nom
+type: Type
+description: Description
+statusCode: Code
+outdatedPage: <strong>Attention!</strong> Vous êtes sur une version antérieure, mettez à jour vers la dernière version !
+
+parameters:
+  name: Paramètres
+  noparameter: Aucun paramètres est nécessaire
+
+type:
+  int: Number
+  integer: Number
+  float: Float
+  string: String
+  \Cawa\SwaggerServer\DateTime: DateTime
+  ResponseCode: ApiException
+  \Exception: ApiException
+  bool: Boolean
+  boolean: Boolean
+  object: Object
+  array: Array
+  void: Void
+
+validation:
+  lte: Inférieur ou égal à %s
+  lt: Inférieur à %s
+  gte: Supérieur ou égal à %s
+  gt: Supérieur à %s
+  in: Valeur dans (%s)
+  isip: Est une ip valide
+  isjson: Est un json valide
