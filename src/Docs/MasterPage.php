@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\Docs;
 
@@ -155,7 +155,7 @@ class MasterPage extends HtmlPage
                     'link' => $link,
                     'active' => $namespaceName == $this->data['namespace'] &&
                         $serviceName == $this->data['service'],
-                    'methods' => []
+                    'methods' => [],
                 ];
 
                 if ($serviceName == $this->data['service']) {
@@ -166,7 +166,7 @@ class MasterPage extends HtmlPage
                                 'namespace' => $namespaceName,
                                 'service' => $serviceName,
                                 'method' => $methodName,
-                                'version' => $version
+                                'version' => $version,
                             ]
                         );
 
@@ -174,8 +174,8 @@ class MasterPage extends HtmlPage
                             'link' => $link,
                             'active' => $namespaceName == $this->data['namespace'] &&
                                 $serviceName == $this->data['service'] &&
-                                $methodName == $this->data['method'] ,
-                            'name' => $methodName
+                                $methodName == $this->data['method'],
+                            'name' => $methodName,
                         ];
                     }
                 }
@@ -211,7 +211,7 @@ class MasterPage extends HtmlPage
                     'namespace' => $this->data['namespace'],
                     'service' => $this->data['service'],
                     'method' => $this->data['method'],
-                    'version' => $this->maxVersion($this->data['namespace']) != $version ? $version : null
+                    'version' => $this->maxVersion($this->data['namespace']) != $version ? $version : null,
                 ]);
             }
             $this->data['maxVersion'] = $this->maxVersion($this->data['namespace']);

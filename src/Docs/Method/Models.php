@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\Docs\Method;
 
@@ -56,14 +56,14 @@ class Models extends ViewController
 
         foreach ($this->models as $name => $model) {
             $modelData = [
-                'properties' => []
+                'properties' => [],
             ];
 
             foreach ($model->getDefinitions() as $property => $definition) {
                 $propertyData = [
                     'subtype' => $definition->getSubType(),
                     'nullable' => $definition->isNullable(),
-                    'comment' => $definition->getComment()
+                    'comment' => $definition->getComment(),
                 ];
 
                 foreach ($definition->getType() as $type) {

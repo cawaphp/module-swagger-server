@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\ExamplesService;
 
@@ -20,7 +20,7 @@ class Response extends AbstractService
 {
     /**
      * Return a simple random string on http header
-     * can return an exception if $success = false
+     * can return an exception if $success = false.
      *
      * @httpmethod POST
      * @auth Basic
@@ -29,7 +29,6 @@ class Response extends AbstractService
      *
      * @throws ResponseCode 422 exception with a the custom header
      *
-     * @return void
      *
      * @response 204 successful 204 response
      *
@@ -47,7 +46,7 @@ class Response extends AbstractService
         if ($success) {
             $this->setStatusCode(204);
 
-            return ;
+            return;
         } else {
             throw new ResponseCode('Exception with header', 422);
         }

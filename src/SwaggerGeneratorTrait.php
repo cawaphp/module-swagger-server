@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
@@ -36,12 +36,12 @@ trait SwaggerGeneratorTrait
              'swagger' => '2.0',
              'info' => [
                'title' => $namespace,
-               'version' => $version . '.0'
+               'version' => $version . '.0',
              ],
              'host' => self::request()->getUri()->getHost(),
              'basePath' => '/Json/' . $namespace . '/v' . $version,
              'schemes' => [
-                 self::request()->getUri()->getScheme()
+                 self::request()->getUri()->getScheme(),
              ],
              'consumes' => [
                  'application/json',
@@ -52,45 +52,44 @@ trait SwaggerGeneratorTrait
              ],
              'paths' => [],
              'securityDefinitions' => [
-               'AuthAnkamaApiKey' => [
+               'AuthApiKey' => [
                    'type' => 'apiKey',
                    'name' => 'APIKEY',
-                   'in' => 'header'
+                   'in' => 'header',
                ],
                'AuthPassword' => [
                    'type' => 'basic',
                ],
-
              ],
              'definitions' => ['ApiException' => [
                    'required' => [
                      'status',
-                     'message'
+                     'message',
                    ],
                    'properties' => [
-                     'status' =>[
-                       'type' => 'integer'
+                     'status' => [
+                       'type' => 'integer',
                      ],
-                     'message' =>[
-                       'type' => 'string'
+                     'message' => [
+                       'type' => 'string',
                      ],
-                     'type' =>[
-                       'type' => 'string'
+                     'type' => [
+                       'type' => 'string',
                      ],
                      'stack_trace' => [
                        'type' => 'array', 'items' => [
-                         'type' => 'string'
-                       ]
+                         'type' => 'string',
+                       ],
                      ],
-                     'code' =>[
-                       'type' => 'integer'
+                     'code' => [
+                       'type' => 'integer',
                      ],
-                     'detail' =>[
-                       'type' => 'string'
+                     'detail' => [
+                       'type' => 'string',
                      ],
-                   ]
-                 ]
-             ]
+                   ],
+                 ],
+             ],
            ];
     }
 
@@ -189,7 +188,7 @@ trait SwaggerGeneratorTrait
                 /* @var $response Response */
                 foreach ($reflection->getDefinition(Definition::RESPONSE) as $i => $response) {
                     $swaggerResponse = [
-                        'headers' => ['X-Duration' => ['description' => 'Api Server ResponseTime', 'type' => 'number']]
+                        'headers' => ['X-Duration' => ['description' => 'Api Server ResponseTime', 'type' => 'number']],
                     ];
 
                     if ($response->getComment()) {
@@ -251,7 +250,7 @@ trait SwaggerGeneratorTrait
         foreach ($this->models as $name => $model) {
             $swaggerDefinition = [
                 'required' => [],
-                'properties' => []
+                'properties' => [],
             ];
 
             foreach ($model->getDefinitions() as $property => $currentDefinition) {

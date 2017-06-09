@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
@@ -70,7 +70,7 @@ class Module extends \Cawa\App\Module
                     $namespace,
                     $version,
                     $service,
-                    $method
+                    $method,
                 ]))
                 ->setController('Cawa\\SwaggerServer\\ApiController::handle'),
         ]);
@@ -84,7 +84,7 @@ class Module extends \Cawa\App\Module
                     $namespace,
                     $version,
                     $service,
-                    $method
+                    $method,
                 ]) . '.json')
                 ->setController('Cawa\\SwaggerServer\\ApiController::swagger'),
         ]);
@@ -96,7 +96,7 @@ class Module extends \Cawa\App\Module
                     'Swagger',
                     $namespace,
                     $version,
-                    $service
+                    $service,
                 ]) . '.json')
                 ->setController('Cawa\\SwaggerServer\\ApiController::swagger'),
         ]);
@@ -121,10 +121,9 @@ class Module extends \Cawa\App\Module
                     $namespace,
                     $version,
                     $service,
-                    $method
+                    $method,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller::method')
-
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller::method'),
         ]);
 
         self::router()->addRoutes([
@@ -134,9 +133,9 @@ class Module extends \Cawa\App\Module
                     '/{{L}}/Docs',
                     $namespace,
                     $version,
-                    $service
+                    $service,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller')
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller'),
         ]);
 
         self::router()->addRoutes([
@@ -145,9 +144,9 @@ class Module extends \Cawa\App\Module
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
                     $namespace,
-                    $version
+                    $version,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller')
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller'),
         ]);
 
         // docs without version
@@ -158,10 +157,9 @@ class Module extends \Cawa\App\Module
                     '/{{L}}/Docs',
                     $namespace,
                     $service,
-                    $method
+                    $method,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller::method')
-
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller::method'),
         ]);
 
         self::router()->addRoutes([
@@ -170,9 +168,9 @@ class Module extends \Cawa\App\Module
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
                     $namespace,
-                    $service
+                    $service,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller')
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller'),
         ]);
 
         self::router()->addRoutes([
@@ -180,18 +178,18 @@ class Module extends \Cawa\App\Module
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
                     '/{{L}}/Docs',
-                    $namespace
+                    $namespace,
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller')
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller'),
         ]);
 
         self::router()->addRoutes([
             (new Route())->setName('swagger/doc/home')
                 ->setOption(AbstractRoute::OPTIONS_URLIZE, false)
                 ->setMatch(implode('/', [
-                    '/{{L}}/Docs'
+                    '/{{L}}/Docs',
                 ]))
-                ->setController('Cawa\\SwaggerServer\\Docs\\Controller')
+                ->setController('Cawa\\SwaggerServer\\Docs\\Controller'),
         ]);
 
         return true;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\ExamplesService;
 
@@ -19,7 +19,7 @@ use Cawa\SwaggerServer\Exceptions\ResponseCode;
 class Exception extends AbstractService
 {
     /**
-     * Return a internal server error
+     * Return a internal server error.
      *
      * @httpmethod GET
      * @auth None
@@ -34,7 +34,7 @@ class Exception extends AbstractService
     }
 
     /**
-     * Return a client error
+     * Return a client error.
      *
      * @httpmethod GET
      *

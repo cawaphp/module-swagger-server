@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\ExamplesService;
 
@@ -20,7 +20,7 @@ use Cawa\SwaggerServer\Exceptions\ResponseCode;
 class Type extends AbstractService
 {
     /**
-     * Return a simple random string
+     * Return a simple random string.
      *
      * taken from character list : 0123456789abcdefghijklmnopqrstuvwxyz
      *
@@ -43,7 +43,7 @@ class Type extends AbstractService
     }
 
     /**
-     * Return a random integer
+     * Return a random integer.
      *
      * taken between $min and $max value
      *
@@ -67,7 +67,7 @@ class Type extends AbstractService
     }
 
     /**
-     * Return a random float
+     * Return a random float.
      *
      * with 2 decimal taken between $min and $max value
      *
@@ -91,7 +91,7 @@ class Type extends AbstractService
     }
 
     /**
-     * Return a random boolean
+     * Return a random boolean.
      *
      * @httpmethod GET
      * @auth None
@@ -104,7 +104,7 @@ class Type extends AbstractService
     }
 
     /**
-     * Return a date + 1 day
+     * Return a date + 1 day.
      *
      * @httpmethod GET
      * @auth None
@@ -119,7 +119,7 @@ class Type extends AbstractService
     }
 
     /**
-     * Return a random object
+     * Return a random object.
      *
      * with all possible primitive type
      *
@@ -175,49 +175,49 @@ class Type extends AbstractService
 class Object
 {
     /**
-     * Random string
+     * Random string.
      *
      * @var string
      */
     public $string;
 
     /**
-     * Random integer
+     * Random integer.
      *
      * @var int
      */
     public $integer;
 
     /**
-     * Random float
+     * Random float.
      *
      * @var int
      */
     public $float;
 
     /**
-     * Random boolean
+     * Random boolean.
      *
      * @var bool
      */
     public $boolean;
 
     /**
-     * Random map of string
+     * Random map of string.
      *
      * @var array map[int]
      */
     public $integerMap;
 
     /**
-     * Random map of string
+     * Random map of string.
      *
      * @var array map[string]
      */
     public $stringMap;
 
     /**
-     * the generated datetime
+     * the generated datetime.
      *
      * @var \Cawa\SwaggerServer\DateTime
      */
@@ -230,7 +230,7 @@ class Object
 
     /**
      * nullable properties
-     * always null
+     * always null.
      *
      * @nullable
      *
@@ -242,7 +242,7 @@ class Object
 class ObjectExtended extends Object
 {
     /**
-     * Random string
+     * Random string.
      *
      * @var string
      */
@@ -252,7 +252,7 @@ class ObjectExtended extends Object
 class Type_v2 extends Type
 {
     /**
-     * Return a simple random string (only available on v2)
+     * Return a simple random string (only available on v2).
      *
      * taken from character list : 0123456789abcdefghijklmnopqrstuvwxyz
      *

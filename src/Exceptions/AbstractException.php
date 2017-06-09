@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer\Exceptions;
 
+use Cawa\App\AbstractApp;
 use Cawa\Net\Ip;
 
 abstract class AbstractException extends \Exception
@@ -23,7 +24,7 @@ abstract class AbstractException extends \Exception
     public $detail;
 
     /**
-     * @return array
+     * @return string
      */
     public function getDetail()
     {
@@ -36,7 +37,7 @@ abstract class AbstractException extends \Exception
     public function display()
     {
         $hide = true;
-        if (Ip::isAdmin() || Ip::isLocal()) {
+        if (AbstractApp::instance()->isAdmin() || Ip::isLocal()) {
             $hide = false;
         }
 
@@ -72,21 +73,21 @@ abstract class AbstractException extends \Exception
     }
 
     /**
-     * @param \Throwable $oException
+     * @param \Throwable $exception
      *
      * @return array
      */
-    private function export(\Throwable $oException)
+    private function export(\Throwable $exception)
     {
         $return = [];
-        $return['type'] = get_class($oException);
-        $return['stack_trace'] = explode("\n", $oException->getTraceAsString());
-        $return['code'] = $oException->getCode();
-        $return['message'] = $oException->getMessage();
+        $return['type'] = get_class($exception);
+        $return['stack_trace'] = explode("\n", $exception->getTraceAsString());
+        $return['code'] = $exception->getCode();
+        $return['message'] = $exception->getMessage();
 
-        foreach (get_object_vars($oException) as $sKey => $mValue) {
-            if ($sKey != 'message' && $sKey != 'code') {
-                $return['detail'][$sKey] = (string) $oException->$sKey;
+        foreach (get_object_vars($exception) as $key => $value) {
+            if ($key != 'message' && $key != 'code') {
+                $return['detail'][$key] = (string) $exception->$key;
             }
         }
 

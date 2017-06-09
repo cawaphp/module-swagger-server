@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\SwaggerServer;
 
@@ -18,6 +18,7 @@ use Cawa\SwaggerServer\Exceptions\ResponseCode;
 class DateTime extends \DateTime implements \JsonSerializable
 {
     const DATE_FORMAT = 'Y-m-d\\TH:i:sP';
+
     /**
      * @return string
      */
@@ -42,7 +43,7 @@ class DateTime extends \DateTime implements \JsonSerializable
             // trim java ms
             $value = preg_replace('`(\\.[0-9]{3})\\+`', '+', $value);
 
-            $datetime = DateTime::createFromFormat(self::DATE_FORMAT, $value);
+            $datetime = self::createFromFormat(self::DATE_FORMAT, $value);
 
             if ($timestamp != $datetime->getTimestamp()) {
                 throw new ResponseCode("Invalid datetime with value '$value'", 422);
@@ -55,17 +56,17 @@ class DateTime extends \DateTime implements \JsonSerializable
     }
 
     /**
-     * Parse a string into a new DateTime object according to the specified format
+     * Parse a string into a new DateTime object according to the specified format.
      *
-     * @param string $format Format accepted by date().
-     * @param string $time String representing the time.
-     * @param \DateTimeZone $timezone A DateTimeZone object representing the desired time zone.
+     * @param string $format format accepted by date()
+     * @param string $time string representing the time
+     * @param \DateTimeZone $timezone a DateTimeZone object representing the desired time zone
      *
      * @throws \Exception
      *
      * @return $this|self
      *
-     * @link http://php.net/manual/en/datetime.createfromformat.php
+     * @see http://php.net/manual/en/datetime.createfromformat.php
      */
     public static function createFromFormat($format, $time, $timezone = null)
     {
