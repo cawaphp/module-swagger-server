@@ -4,7 +4,7 @@
     "keywords": ["cawa", "swagger", "api", "json", "rest", "swagger-ui"],
     "minimum-stability": "dev",
     "prefer-stable" : true,
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "tchiotludo"
